@@ -1,5 +1,7 @@
+import { ButtonStyle, ReactButton } from './components';
 import logo from './logo.svg';
 import './style/App.css';
+import './style/reactComponents.css';
 
 function App() {
   return (
@@ -9,6 +11,11 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <ReactButton buttonStyle={ButtonStyle.outlineInfo} className="something" onClick={() => console.log("hey")}>click me</ReactButton>
+        <div className='splitContainer'>
+          <div className='rightSplit'></div>
+          <div className='leftSplit'></div>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
