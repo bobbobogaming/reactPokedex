@@ -1,0 +1,37 @@
+.r-card {
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px #00000024, 0px 2px 1px #0000001f, 0px 1px 3px #00000024;
+    background-color: white;
+    color: black;
+}
+
+@keyframes split{
+    from {gap: 0px}
+    to {gap: 600px}
+}
+
+.splitContainer{
+    height: 400px;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(2, 100px);
+    grid-auto-rows: 400px;
+    animation-name: split;
+    animation-fill-mode: forwards;
+    animation-duration: 3s;
+}
+
+.leftSplit{
+    width: auto;
+    margin-left: -18%;
+    background: red;
+    clip-path: polygon(0% 0%, 100% 10%, 100% 90%, 30% 100%, 30% 55%, 0% 45%);
+}
+
+.rightSplit{
+    width: auto;
+    margin-right: -18%;
+    background: red;
+    clip-path: polygon(70% 0%, 0% 10%, 0% 90%, 100% 100%, 100% 55%, 70% 45%);
+}
