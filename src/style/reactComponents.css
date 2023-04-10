@@ -3,23 +3,29 @@
     border-radius: 4px;
     box-shadow: 0px 1px 1px #00000024, 0px 2px 1px #0000001f, 0px 1px 3px #00000024;
     background-color: white;
-    color: black;
 }
 
 @keyframes split{
     from {gap: 0px}
-    to {gap: 600px}
+    to {gap: 1500px}
 }
 
 .splitContainer{
-    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    height: 90%;
     display: grid;
     place-content: center;
     grid-template-columns: repeat(2, 100px);
-    grid-auto-rows: 400px;
+    grid-auto-rows: 90%;
     animation-name: split;
     animation-fill-mode: forwards;
-    animation-duration: 3s;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    pointer-events: none;
 }
 
 .leftSplit{
@@ -34,4 +40,98 @@
     margin-right: -18%;
     background: red;
     clip-path: polygon(70% 0%, 0% 10%, 0% 90%, 100% 100%, 100% 55%, 70% 45%);
+}
+
+@keyframes openDex {
+    from {width: 40px}
+    to {width: 1550px}
+}
+
+.pokedex-background{
+    width: 0;
+    height: 75%;
+    overflow: hidden;
+    background-color: #8fe3fd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    
+    background-image: url(../assets/pokeball-background-white.png);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: openDex;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    color: #efefef;
+}
+
+.pokedex-background>div{
+    position: fixed;
+    height: 90%;
+    width: 1550px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.leftContainer{
+    background-color: #0000001f;
+    width: 650px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    text-align: start;
+    gap: 20px;
+
+}
+
+.rightContainer {
+    background-color: #0000001f;
+    width: 650px;
+    height: 100%;
+}
+
+#pokemonPreview{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+    background-color: #0000001f;
+}
+
+#pokemonPreview>img{
+    height: inherit;
+}
+
+#types{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#types>div{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    gap: 5px;
+}
+
+#types>div>img {
+    height: 32px;
+    width: 32px;
+}
+
+.pokemonListItem {
+    display: flex;
+    text-align: justify;
+    background-color: #0000001f;
+    gap: 200px;
+    margin-bottom: 10px;
 }
