@@ -26,12 +26,12 @@ export class ButtonStyle{
 
 export class ReactButton extends Component {
     render(){
-        return <button id={this.props.id || ""} className={`btn ${this.props.buttonStyle || ""} ${this.props.className || ""}`} style={this.props.style || ""} onClick={this.props.onClick}>{this.props.children}</button>
+        return <button id={this.props.id} className={`btn ${this.props.buttonStyle || ""} ${this.props.className || ""}`} style={this.props.style} onClick={this.props.onClick}>{this.props.children}</button>
     }
 }
 
 export class ReactCard extends Component {
     render(){
-        return <div id={this.props.id || ""} className={`r-card ${this.props.className || ""}`} style={this.props.style}>{this.props.children}</div>
+        return <div id={this.props.id} className={`r-card ${this.props.className || ""}`} style={this.props.style}>{this.props.children}</div>
     }
 }
