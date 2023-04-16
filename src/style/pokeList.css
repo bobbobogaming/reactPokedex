@@ -1,0 +1,52 @@
+.rightContainer {
+    background-color: #0000001f;
+    width: 650px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pokemonListItem {
+    cursor: pointer;
+    padding: .9rem;
+    display: flex;
+    background-color: #0000001f;
+    margin: 5px;
+    transition: .2s;
+    user-select: none;
+}
+.pokemonListItem:hover {
+    background-color: #0000002f;
+}
+
+.pokemonListItem > * {
+    margin-right: auto;
+}
+
+.listGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-auto-rows: auto;
+}
+
+.listNavigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.listNavigation > button {
+    width: 200px;
+}
+
+
+/* Remove up-down arrows from number inputs*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+  }

@@ -60,9 +60,10 @@
     transform: translate(-50%, -50%);
     top: 50%;
     
-    background-image: url(../assets/pokeball-background-white.png);
+    background-image: url(../assets/pokeball-background.svg);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: 600px;
 
     animation: openDex;
     animation-fill-mode: forwards;
@@ -78,60 +79,4 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-
-.leftContainer{
-    background-color: #0000001f;
-    width: 650px;
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-    text-align: start;
-    gap: 20px;
-
-}
-
-.rightContainer {
-    background-color: #0000001f;
-    width: 650px;
-    height: 100%;
-}
-
-#pokemonPreview{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    width: 100%;
-    background-color: #0000001f;
-}
-
-#pokemonPreview>img{
-    height: inherit;
-}
-
-#types{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-}
-
-#types>div{
-    display: flex;
-    width: 30%;
-    justify-content: center;
-    gap: 5px;
-}
-
-#types>div>img {
-    height: 32px;
-    width: 32px;
-}
-
-.pokemonListItem {
-    display: flex;
-    text-align: justify;
-    background-color: #0000001f;
-    gap: 200px;
-    margin-bottom: 10px;
 }

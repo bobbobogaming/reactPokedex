@@ -1,0 +1,45 @@
+.leftContainer{
+    background-color: #0000001f;
+    width: 650px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    text-align: start;
+    gap: 40px;
+}
+
+#pokemonImgPreview{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 100%;
+    background-color: #0000001f;
+}
+
+#pokemonImgPreview>img{
+    height: inherit;
+}
+
+#types{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#types>div{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    gap: 5px;
+    user-select: none;
+}
+
+#types>div>img {
+    height: 32px;
+    width: 32px;
+}
+
+.moreInfoButton{
+    margin-top: auto;
+}
