@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <defs>
+        <clipPath id="cutout">
+            <rect x="25" y="0" width="50" height="48"/>
+            <rect x="25" y="52" width="50" height="48"/>
+        </clipPath>
+    </defs>
+
+    <circle cx="50" cy="50" r="15" fill="none" stroke-width="15" stroke="white" opacity="50%" clip-path="url(#cutout)"/>
+    <circle cx="50" cy="50" r="5" fill="white" opacity="50%"/>
+</svg>
