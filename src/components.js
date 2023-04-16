@@ -26,7 +26,7 @@ export class ButtonStyle{
 
 export class ReactButton extends Component {
     render(){
-        return <button id={this.props.id} className={`btn ${this.props.buttonStyle || ""} ${this.props.className || ""}`} style={this.props.style} onClick={this.props.onClick}>{this.props.children}</button>
+        return <button id={this.props.id} className={`btn ${this.props.buttonStyle || ""} ${this.props.className || ""}`} style={this.props.style} onClick={this.props.onClick} disabled={this.props.disabled}>{this.props.children}</button>
     }
 }
 
