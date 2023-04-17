@@ -27,7 +27,7 @@ class PokemonTypeColor {
 
 class Typecard extends Component {
   componentDidUpdate(prevProps){
-    if(this.props.pokemonType !== prevProps.pokemonType){
+    if(this.props.pokemonType !== prevProps.pokemonType && this.props.pokemonType){
       import(`./assets/types/${this.props.pokemonType.toLowerCase()}.svg`)
       .then(icon => this.setState({typeIcon: icon}))
     }
@@ -56,7 +56,7 @@ class Typecard extends Component {
 
 export class PokePreview extends Component {
   async componentDidMount(){
-    let pokemon = await getPokemon(10);
+    let pokemon = await getPokemon(1);
     if (pokemon) {
       this.setState({selectedItem: {
         name: pokemon.name,
@@ -76,8 +76,16 @@ export class PokePreview extends Component {
     }
   }
 
-  changeSelectedItem = (item) => {
-    this.setState({selectedItem: item})
+  changeSelectedItem = async (pokemonName) => {
+    let pokemon = await getPokemon(pokemonName.toLowerCase());
+    if (pokemon) {
+      this.setState({selectedItem: {
+        name: pokemon.name,
+        flavorText: pokemon.flavorText,
+        sprite: pokemon.sprite,
+        types: pokemon.types
+      }});
+    }
   }
 
   render(){
