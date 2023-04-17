@@ -1,6 +1,7 @@
 import './style/pokePreview.css'
 import { ButtonStyle, ReactButton, ReactCard } from './components';
 import { Component } from 'react';
+import { getPokemon } from './PokeApi';
 
 
 class PokemonTypeColor {
@@ -25,6 +26,13 @@ class PokemonTypeColor {
 }
 
 class Typecard extends Component {
+  componentDidUpdate(prevProps){
+    if(this.props.pokemonType !== prevProps.pokemonType){
+      import(`./assets/types/${this.props.pokemonType.toLowerCase()}.svg`)
+      .then(icon => this.setState({typeIcon: icon}))
+    }
+  }
+
   componentDidMount(){
     if (this.props.pokemonType){
       import(`./assets/types/${this.props.pokemonType.toLowerCase()}.svg`)
@@ -47,12 +55,24 @@ class Typecard extends Component {
 }
 
 export class PokePreview extends Component {
+  async componentDidMount(){
+    let pokemon = await getPokemon(10);
+    if (pokemon) {
+      this.setState({selectedItem: {
+        name: pokemon.name,
+        flavorText: pokemon.flavorText,
+        sprite: pokemon.sprite,
+        types: pokemon.types
+      }});
+    }
+  }
+
   state = {
     selectedItem: {
-      name: "Bulbasaur",
-      flavorText: "A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON.",
-      sprite: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-      types: ["Grass","Poison"]
+      name: "",
+      flavorText: "",
+      sprite: '',
+      types: []
     }
   }
 
