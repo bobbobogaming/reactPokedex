@@ -63,7 +63,7 @@ export class PokemonPager{
     }
 }
 
-async function getPokemon(pokemonName) {
+export async function getPokemon(pokemonName) {
     let pokemonResponses = await Promise.all([
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`),
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
@@ -76,8 +76,15 @@ async function getPokemon(pokemonName) {
     pokemon.id = pokemonResponseJson["id"];
     pokemon.name = pokemonResponseJson["name"].replace(/^[a-zA-Z]/g, pokemonResponseJson["name"].charAt(0).toUpperCase());
     pokemon.sprite = pokemonResponseJson["sprites"]["other"]["official-artwork"]["front_default"];
-    pokemon.flavorText = pokemonSpeciesResponseJson["flavor_text_entries"][0]["flavor_text"];
-    pokemon.types = pokemonResponseJson["types"].map(typeEntry => typeEntry["type"]["name"]);
+    
+    for (let i = 0; pokemonSpeciesResponseJson["flavor_text_entries"].length > i; i++){
+        if (pokemonSpeciesResponseJson["flavor_text_entries"][i]["language"]["name"] === "en"){
+            pokemon.flavorText = pokemonSpeciesResponseJson["flavor_text_entries"][i]["flavor_text"];
+            break;
+        }
+    }
+    
+    pokemon.types = pokemonResponseJson["types"].map(typeEntry => typeEntry["type"]["name"].replace(/^[a-zA-Z]/g, typeEntry["type"]["name"].charAt(0).toUpperCase()));
     pokemon.stats = new Map(pokemonResponseJson["stats"].map(statEntry => [statEntry["stat"]["name"], statEntry["base_stat"]]));
     pokemon.abilities = pokemonResponseJson["abilities"].map(abilityEntry => abilityEntry["ability"]["name"]);
     pokemon.height = pokemonResponseJson["height"];
