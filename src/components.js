@@ -32,6 +32,6 @@ export class ReactButton extends Component {
 
 export class ReactCard extends Component {
     render(){
-        return <div id={this.props.id} className={`r-card ${this.props.className || ""}`} style={this.props.style}>{this.props.children}</div>
+        return <div id={this.props.id} className={`r-card ${this.props.className || ""}`} style={this.props.style} onClick={this.props.onClick}>{this.props.children}</div>
     }
 }
