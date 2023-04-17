@@ -61,6 +61,14 @@ export class PokemonPager{
             return this.handleFetch(responseJson)
         }
     }
+
+    async fetchPage(pageNo){
+        this.current = new URL(`https://pokeapi.co/api/v2/pokemon-species?limit=${this.POKEMONS_PER_PAGE}&offset=${(pageNo-1)*this.POKEMONS_PER_PAGE}`);
+        let response = await fetch(this.current);
+        let responseJson = await response.json();
+        this.pageNo = pageNo
+        return this.handleFetch(responseJson);
+    }
 }
 
 export async function getPokemon(pokemonName) {
