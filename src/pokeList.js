@@ -1,21 +1,21 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 import { ButtonStyle, ReactButton, ReactCard } from "./components";
 import "./style/pokeList.css";
 import { PokemonPager } from "./PokeApi";
 
 export class PokeList extends Component{
-    pager
     constructor(props){
         super(props);
         this.pager = new PokemonPager();
+        this.pageNo = createRef(null);
     }
     async componentDidMount(){
         let currentPageData = await this.pager.fetchCurrent();
+        this.pageNo.current.value = currentPageData.pageNo
         this.setState({
-            pageNo: currentPageData.pageNo, 
             maxPageNo: currentPageData.maxPageNo,
             pokemonListItems: currentPageData.pokemons.map( pokemon =>
-                <ReactCard key={pokemon.id} className={"pokemonListItem"}>
+                <ReactCard key={pokemon.id} className={"pokemonListItem"} onClick={()=>this.props.handleSection(pokemon.name)}>
                     <p>#{pokemon.id}</p>
                     <h4>{pokemon.name}</h4>
                 </ReactCard>
@@ -32,11 +32,25 @@ export class PokeList extends Component{
     }
 
     handleNewPage = (data) => {
+        this.pageNo.current.value = data.pageNo
         this.setState({
-            pageNo: data.pageNo, 
             maxPageNo: data.maxPageNo,
             pokemonListItems: data.pokemons.map( pokemon =>
-                <ReactCard key={pokemon.id} className={"pokemonListItem"}>
+                <ReactCard key={pokemon.id} className={"pokemonListItem"} onClick={()=>this.props.handleSection(pokemon.name)}>
+                    <p>#{pokemon.id}</p>
+                    <h4>{pokemon.name}</h4>
+                </ReactCard>
+            )
+        })
+    }
+
+    handlePageNoChange = async (pageNo) => {
+        let pageData = await this.pager.fetchPage(pageNo);
+        this.pageNo.current.value = pageData.pageNo
+        this.setState({
+            maxPageNo: pageData.maxPageNo,
+            pokemonListItems: pageData.pokemons.map( pokemon =>
+                <ReactCard key={pokemon.id} className={"pokemonListItem"} onClick={()=>this.props.handleSection(pokemon.name)}>
                     <p>#{pokemon.id}</p>
                     <h4>{pokemon.name}</h4>
                 </ReactCard>
@@ -45,7 +59,6 @@ export class PokeList extends Component{
     }
     
     state={
-        pageNo:1,
         maxPageNo: 0,
         pokemonListItems: []
     }
@@ -58,7 +71,7 @@ export class PokeList extends Component{
                 </div>
                 <div className="listNavigation">
                     <ReactButton buttonStyle={ButtonStyle.danger} onClick={async()=>this.handleNewPage(await this.pager.fetchPrev())}>Previous</ReactButton>
-                    <p>Page <input value={this.state.pageNo} type="number" min="1" max="100" style={{width: 60+"px"}} />/{this.state.maxPageNo}</p>
+                    <p>Page <input ref={this.pageNo} onBlur={(event)=>this.handlePageNoChange(event.target.value)} onKeyDown={(event)=>{if (event.key==="Enter") this.handlePageNoChange(event.target.value)}}  type="number" min="1" max="100" style={{width: 60+"px"}} />/{this.state.maxPageNo}</p>
                     <ReactButton buttonStyle={ButtonStyle.danger} onClick={async()=>this.handleNewPage(await this.pager.fetchNext())}>Next</ReactButton>
                 </div>
             </ReactCard>
