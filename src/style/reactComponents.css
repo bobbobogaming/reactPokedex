@@ -5,9 +5,14 @@
     background-color: white;
 }
 
-@keyframes split{
+@keyframes splitIn{
     from {gap: 0px}
     to {gap: 1500px}
+}
+
+@keyframes splitOut{
+    from {gap: 1500px}
+    to {gap: 0px}
 }
 
 .splitContainer{
@@ -21,11 +26,22 @@
     place-content: center;
     grid-template-columns: repeat(2, 100px);
     grid-auto-rows: 90%;
-    animation-name: split;
+    pointer-events: none;
+}
+
+.animateSplitIn{
+    animation-name: splitIn;
     animation-fill-mode: forwards;
     animation-duration: 2s;
     animation-delay: 1s;
-    pointer-events: none;
+}
+
+.animateSplitOut{
+    gap: 1500px;
+    animation-name: splitOut;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-delay: 1s;
 }
 
 .leftSplit{
@@ -47,6 +63,11 @@
     to {width: 1550px}
 }
 
+@keyframes closeDex {
+    from {width: 1550px}
+    to {width: 40px}
+}
+
 .pokedex-background{
     width: 0;
     height: 75%;
@@ -65,11 +86,22 @@
     background-repeat: no-repeat;
     background-size: 600px;
 
-    animation: openDex;
+    color: #efefef;
+}
+
+.animateBackgroundIn{
+    animation-name: openDex;
     animation-fill-mode: forwards;
     animation-duration: 2s;
     animation-delay: 1s;
-    color: #efefef;
+}
+
+.animateBackgroundOut{
+    width: 1550px;
+    animation-name: closeDex;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-delay: 1s;
 }
 
 .pokedex-background>div{
