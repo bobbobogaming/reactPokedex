@@ -1,0 +1,19 @@
+#pokemonStatImgPreview{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(50vw*(27/64));
+    width: 100%;
+    background-color: #0000001f;
+}
+
+#pokemonStatImgPreview>img{
+    height: inherit;
+}
+
+.statGrid{
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-auto-rows: auto;
+    align-items: center;
+}
