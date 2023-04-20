@@ -1,18 +1,9 @@
-.leftContainer{
-    background-color: #0000001f;
-    width: 650px;
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-    text-align: start;
-    gap: 40px;
-}
 
 #pokemonImgPreview{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 300px;
+    height: calc(38vw*(27/64));
     width: 100%;
     background-color: #0000001f;
 }
