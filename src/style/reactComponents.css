@@ -2,113 +2,28 @@
     padding: 1rem;
     border-radius: 4px;
     box-shadow: 0px 1px 1px #00000024, 0px 2px 1px #0000001f, 0px 1px 3px #00000024;
-    background-color: white;
+    background-color: #0000001f;
 }
 
-@keyframes splitIn{
-    from {gap: 0px}
-    to {gap: 1500px}
-}
-
-@keyframes splitOut{
-    from {gap: 1500px}
-    to {gap: 0px}
-}
-
-.splitContainer{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    height: 90%;
-    display: grid;
-    place-content: center;
-    grid-template-columns: repeat(2, 100px);
-    grid-auto-rows: 90%;
-    pointer-events: none;
-}
-
-.animateSplitIn{
-    animation-name: splitIn;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
-    animation-delay: 1s;
-}
-
-.animateSplitOut{
-    gap: 1500px;
-    animation-name: splitOut;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
-    animation-delay: 1s;
-}
-
-.leftSplit{
-    width: auto;
-    margin-left: -18%;
-    background: red;
-    clip-path: polygon(0% 0%, 100% 10%, 100% 90%, 30% 100%, 30% 55%, 0% 45%);
-}
-
-.rightSplit{
-    width: auto;
-    margin-right: -18%;
-    background: red;
-    clip-path: polygon(70% 0%, 0% 10%, 0% 90%, 100% 100%, 100% 55%, 70% 45%);
-}
-
-@keyframes openDex {
-    from {width: 40px}
-    to {width: 1550px}
-}
-
-@keyframes closeDex {
-    from {width: 1550px}
-    to {width: 40px}
-}
-
-.pokedex-background{
-    width: 0;
-    height: 75%;
-    overflow: hidden;
-    background-color: #8fe3fd;
+.progressBarRoot {
+    border-radius: 0;
+    height: 0.25rem;
+    min-height: 0.25rem;
+    position: relative;
+    background-color: #433dd21f;
+    text-align: center;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    
-    background-image: url(../assets/pokeball-background.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 600px;
-
-    color: #efefef;
-}
-
-.animateBackgroundIn{
-    animation-name: openDex;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
-    animation-delay: 1s;
-}
-
-.animateBackgroundOut{
-    width: 1550px;
-    animation-name: closeDex;
-    animation-fill-mode: forwards;
-    animation-duration: 2s;
-    animation-delay: 1s;
-}
-
-.pokedex-background>div{
-    position: fixed;
-    height: 90%;
-    width: 1550px;
-    display: flex;
-    justify-content: space-around;
     align-items: center;
 }
+
+.progressBarValue {
+    border-radius: 0;
+    position: absolute;
+    background-color: #4340d2;
+    height: 100%;
+}
+
+.progressBarLabel {
+    display: none;
+}
+
