@@ -35,3 +35,19 @@ export class ReactCard extends Component {
         return <div id={this.props.id} className={`r-card ${this.props.className || ""}`} style={this.props.style} onClick={this.props.onClick}>{this.props.children}</div>
     }
 }
+
+export class ReactProgressBar extends Component {
+    static defaultProps = {
+        max: 100,
+        value: 0
+    }
+
+    render() {
+        return (
+            <div className={`progressBarRoot ${this.props.displayType || ""}`}>
+                <div className="progressBarValue" style={{width: ((this.props.value/this.props.max)*100)+"%"}}></div>
+                <div className="progressBarLabel"></div>
+            </div>
+        )
+    }
+}
