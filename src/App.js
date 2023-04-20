@@ -1,8 +1,8 @@
 import { ReactCard } from './components';
-import { PokePreview } from './pokePreview'
-import { PokeList } from './pokeList'
+import { PokePreview } from './pokePreview';
+import { PokeList } from './pokeList';
+import { PokeInfoPage } from './pokeInfoPage';
 import './style/App.css';
-import './style/reactComponents.css';
 import { useRef, useState } from 'react';
 
 // code snippet make first letter of a string uppercase:
@@ -17,13 +17,15 @@ function App() {
   
   return (
     <div className="App">
-        <div className={`splitContainer animateSplit${(shouldAnimateIn)?"In":"Out"}`} style={{gap: shouldAnimateIn?0:"1500px"}}>
+        <div className={`splitContainer animateSplit${(shouldAnimateIn)?"In":"Out"}`} style={{gap: shouldAnimateIn?"var(--split-closed-gap)":"var(--split-open-gap)"}}>
           <div className='rightSplit'></div>
           <div className='leftSplit'></div>
         </div>
-        <ReactCard className={`pokedex-background animateBackground${(shouldAnimateIn)?"In":"Out"}`} style={{width: shouldAnimateIn?"40px":"1550px"}}>
+        <ReactCard className={`pokedex-background animateBackground${(shouldAnimateIn)?"In":"Out"}`} style={{width: shouldAnimateIn?"var(--background-closed-width)":"var(--background-open-width)"}}>
           <div>
-            <PokePreview ref={pokePreviewRef}/>
+            {/*<PokeInfoPage />*/}
+
+            <PokePreview ref={pokePreviewRef} animatePageChange={switchAnimationDirection} />
             <PokeList handleSection={(name)=>pokePreviewRef.current.changeSelectedItem(name)}/>
           </div>
         </ReactCard>
