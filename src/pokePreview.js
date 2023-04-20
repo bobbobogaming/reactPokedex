@@ -25,7 +25,7 @@ class PokemonTypeColor {
   static Fairy = "#D685AD";
 }
 
-class Typecard extends Component {
+export class Typecard extends Component {
   componentDidUpdate(prevProps){
     if(this.props.pokemonType !== prevProps.pokemonType && this.props.pokemonType){
       import(`./assets/types/${this.props.pokemonType.toLowerCase()}.svg`)
@@ -100,7 +100,7 @@ export class PokePreview extends Component {
           <Typecard pokemonType={this.state.selectedItem.types[0]}></Typecard>
           <Typecard pokemonType={this.state.selectedItem.types[1]}></Typecard>
         </div>
-        <ReactButton className="moreInfoButton" style={{display: this.state.selectedItem.name?"":"none"}} buttonStyle={ButtonStyle.danger}>More info</ReactButton>
+        <ReactButton className="moreInfoButton" style={{display: this.state.selectedItem.name?"":"none"}} buttonStyle={ButtonStyle.danger} onClick={()=>this.props.animatePageChange()}>More info</ReactButton>
       </ReactCard>
     )
   }
