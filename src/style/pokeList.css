@@ -1,12 +1,3 @@
-.rightContainer {
-    background-color: #0000001f;
-    width: 650px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .pokemonListItem {
     cursor: pointer;
     padding: .9rem;
@@ -28,6 +19,8 @@
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-auto-rows: auto;
+    max-height: 93%;
+    overflow: auto;
 }
 
 .listNavigation {
