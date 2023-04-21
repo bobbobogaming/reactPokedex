@@ -24,7 +24,7 @@ function App(props) {
         </div>
         <ReactCard className={`pokedex-background animateBackground${(shouldAnimateIn)?"In":"Out"}`} style={{width: shouldAnimateIn?"var(--background-closed-width)":"var(--background-open-width)"}}>
           <div>
-            <Outlet />
+            <Outlet context={[switchAnimationDirection]} />
             {/*<PokeInfoPage />*/}
             {/*<PokePreview ref={pokePreviewRef} animatePageChange={switchAnimationDirection} />
             <PokeList handleSection={(name)=>pokePreviewRef.current.changeSelectedItem(name)} />*/}

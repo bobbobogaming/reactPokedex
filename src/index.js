@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './style/index.css';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider, createHashRouter} from 'react-router-dom'
+import { RouterProvider, createHashRouter, useOutletContext} from 'react-router-dom'
 import ErrorPage from './errorPage';
 import { PokePreview } from './pokePreview';
 import { PokeList } from './pokeList';
@@ -11,9 +11,10 @@ import { PokeInfoPage, infoPageLoader, FuncPokeInfoPage, PokeInfoPageWithRouter 
 
 function FontPage(){
   const previewRef = useRef(null);
+  const [switchAnimationDirection] = useOutletContext();
   return(
     <>
-      <PokePreview ref={previewRef}/>
+      <PokePreview ref={previewRef} animatePageChange={switchAnimationDirection}/>
       <PokeList handleSection={(name)=>previewRef.current.changeSelectedItem(name)}/>
     </>
   )

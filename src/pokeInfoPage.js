@@ -3,7 +3,7 @@ import { Typecard } from './pokePreview';
 import { Component } from 'react';
 import './style/pokeInfo.css'
 import { getPokemon } from './PokeApi';
-import { useLocation, useNavigate, useParams, NavLink, useLoaderData } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Navigate, useLoaderData, useOutletContext } from 'react-router-dom';
 
 export async function infoPageLoader({params}){
   const pokemon = await getPokemon(params.pokemonName);
@@ -14,12 +14,14 @@ function withRouter(Component){
     let location = useLocation();
     let navigate = useNavigate();
     let params = useParams();
+    let [outletContext] = useOutletContext();
     return (
       <Component
         {...props}
         location={location}
         params={params}
         navigate={navigate}
+        outletContext={outletContext}
       />
     );
   }
@@ -82,7 +84,7 @@ export class PokeInfoPage extends Component {
   render() {
     return(
       <>
-        <PokeInfo pokemon={this.state.pokemon}></PokeInfo>
+        <PokeInfo pokemon={this.state.pokemon} animatePageChange={this.props.outletContext}></PokeInfo>
         <PokeStatView pokemon={this.state.pokemon}></PokeStatView>
       </>
     )
@@ -127,7 +129,9 @@ class PokeInfo extends Component {
   }
 
   state={
-    abilities: []
+    abilities: [],
+    newPage: false,
+    lockedButton: false
   }
   
   componentDidUpdate(prevProps){
@@ -136,13 +140,26 @@ class PokeInfo extends Component {
       this.setState({abilities: newAbilities})
     }
   }
+
+  handlePageChange = ()=>{
+    if(!this.state.lockedButton){
+      this.setState({lockedButton: true})
+      this.props.animatePageChange()
+      setTimeout(()=>{
+        this.setState({newPage:true})
+        this.props.animatePageChange()
+        this.setState({lockedButton: false})
+      },1000)
+    }
+  }
   
   render(){
     return (
       <ReactCard className={"leftContainer"} style={{gap: "25px"}}>
-        <NavLink to={`/`} className={`btn ${ButtonStyle.danger}`}>≪ Back to Pokedex</NavLink>
+        {/*<NavLink to={`/`} className={`btn ${ButtonStyle.danger}`}>≪ Back to Pokedex</NavLink>*/}
+        {this.state.newPage && <Navigate to="/" replace={true}/>}
 
-        {/*<ReactButton buttonStyle={ButtonStyle.danger}>≪ Back to Pokedex</ReactButton>*/}
+        <ReactButton buttonStyle={ButtonStyle.danger} onClick={()=> this.handlePageChange()}>≪ Back to Pokedex</ReactButton>
         <ReactCard>
           <p>#{this.props.pokemon.id}</p>
           <h2>{this.props.pokemon.name}</h2>

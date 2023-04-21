@@ -2,7 +2,7 @@ import './style/pokePreview.css'
 import { ButtonStyle, ReactButton, ReactCard } from './components';
 import { Component } from 'react';
 import { getPokemon } from './PokeApi';
-import { NavLink, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 class PokemonTypeColor {
@@ -75,7 +75,8 @@ export class PokePreview extends Component {
       sprite: '',
       types: []
     },
-    newPage: false
+    newPage: false,
+    lockedButton: false
   }
 
   changeSelectedItem = async (pokemonName) => {
@@ -91,8 +92,15 @@ export class PokePreview extends Component {
   }
 
   handlePageChange = ()=>{
-    //this.props.animatePageChange()// not working
-    this.setState({newPage:true})
+    if(!this.state.lockedButton){
+      this.setState({lockedButton: true})
+      this.props.animatePageChange()
+      setTimeout(()=>{
+        this.setState({newPage:true})
+        this.props.animatePageChange()
+        this.setState({lockedButton: false})
+      },1000)
+    }
   }
 
   render(){
