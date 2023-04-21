@@ -1,14 +1,47 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './style/index.css';
 import reportWebVitals from './reportWebVitals';
+import { RouterProvider, createHashRouter} from 'react-router-dom'
+import ErrorPage from './errorPage';
+import { PokePreview } from './pokePreview';
+import { PokeList } from './pokeList';
+import { PokeInfoPage, infoPageLoader, FuncPokeInfoPage, PokeInfoPageWithRouter } from './pokeInfoPage';
 
+function FontPage(){
+  const previewRef = useRef(null);
+  return(
+    <>
+      <PokePreview ref={previewRef}/>
+      <PokeList handleSection={(name)=>previewRef.current.changeSelectedItem(name)}/>
+    </>
+  )
+}
+
+const router = createHashRouter([
+  {
+    path:"/",
+    element: <App/>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <FontPage />
+      },
+      {
+        path: "pokemon/:pokemonName",
+        element: <PokeInfoPageWithRouter />,
+        loader: infoPageLoader
+      }
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

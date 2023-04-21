@@ -4,11 +4,12 @@ import { PokeList } from './pokeList';
 import { PokeInfoPage } from './pokeInfoPage';
 import './style/App.css';
 import { useRef, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 // code snippet make first letter of a string uppercase:
 // text.replace(/^[a-zA-Z]/g,text.charAt(0).toUpperCase())
 
-function App() {
+function App(props) {
   let pokePreviewRef = useRef(null);
   const [shouldAnimateIn,setAnimationDirectionToIn] = useState(true);
   const switchAnimationDirection = () => {
@@ -23,10 +24,10 @@ function App() {
         </div>
         <ReactCard className={`pokedex-background animateBackground${(shouldAnimateIn)?"In":"Out"}`} style={{width: shouldAnimateIn?"var(--background-closed-width)":"var(--background-open-width)"}}>
           <div>
+            <Outlet />
             {/*<PokeInfoPage />*/}
-
-            <PokePreview ref={pokePreviewRef} animatePageChange={switchAnimationDirection} />
-            <PokeList handleSection={(name)=>pokePreviewRef.current.changeSelectedItem(name)}/>
+            {/*<PokePreview ref={pokePreviewRef} animatePageChange={switchAnimationDirection} />
+            <PokeList handleSection={(name)=>pokePreviewRef.current.changeSelectedItem(name)} />*/}
           </div>
         </ReactCard>
     </div>

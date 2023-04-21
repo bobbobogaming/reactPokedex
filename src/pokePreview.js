@@ -2,6 +2,7 @@ import './style/pokePreview.css'
 import { ButtonStyle, ReactButton, ReactCard } from './components';
 import { Component } from 'react';
 import { getPokemon } from './PokeApi';
+import { NavLink, Navigate } from 'react-router-dom';
 
 
 class PokemonTypeColor {
@@ -73,7 +74,8 @@ export class PokePreview extends Component {
       flavorText: "",
       sprite: '',
       types: []
-    }
+    },
+    newPage: false
   }
 
   changeSelectedItem = async (pokemonName) => {
@@ -88,6 +90,11 @@ export class PokePreview extends Component {
     }
   }
 
+  handlePageChange = ()=>{
+    //this.props.animatePageChange()// not working
+    this.setState({newPage:true})
+  }
+
   render(){
     return (
       <ReactCard className={"leftContainer"}>
@@ -100,7 +107,9 @@ export class PokePreview extends Component {
           <Typecard pokemonType={this.state.selectedItem.types[0]}></Typecard>
           <Typecard pokemonType={this.state.selectedItem.types[1]}></Typecard>
         </div>
-        <ReactButton className="moreInfoButton" style={{display: this.state.selectedItem.name?"":"none"}} buttonStyle={ButtonStyle.danger} onClick={()=>this.props.animatePageChange()}>More info</ReactButton>
+        {/*<NavLink to={`/pokemonName`} className={`btn ${ButtonStyle.danger}`}>More info</NavLink>*/}
+        {this.state.newPage && <Navigate to={`/pokemon/${this.state.selectedItem.name.toLocaleLowerCase()}`} replace={true}/>}
+        <ReactButton className="moreInfoButton" style={{display: this.state.selectedItem.name?"":"none"}} buttonStyle={ButtonStyle.danger} onClick={()=>this.handlePageChange()}>More info</ReactButton>
       </ReactCard>
     )
   }
