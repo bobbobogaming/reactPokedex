@@ -4,6 +4,11 @@
   --split-open-gap: 78vw;
   --split-closed-gap: 0;
   --top-displacement: calc(60vw*(27/64));
+
+  --animation-in-wait-time: 150ms;
+  --animation-out-wait-time: 0s;
+  --animation-durtion-time: 1s;
+  --animation-timing-funtion: ease;
 }
 
 @keyframes splitIn{
@@ -33,15 +38,17 @@
 .animateSplitIn{
   animation-name: splitIn;
   animation-fill-mode: forwards;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: var(--animation-durtion-time);
+  animation-delay: var(--animation-in-wait-time);
+  animation-timing-function: var(--animation-timing-funtion);
 }
 
 .animateSplitOut{
   animation-name: splitOut;
   animation-fill-mode: forwards;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: var(--animation-durtion-time);
+  animation-delay: var(--animation-out-wait-time);
+  animation-timing-function: var(--animation-timing-funtion);
 }
 
 .leftSplit{
@@ -92,15 +99,17 @@
 .animateBackgroundIn{
   animation-name: openDex;
   animation-fill-mode: forwards;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: var(--animation-durtion-time);
+  animation-delay: var(--animation-in-wait-time);
+  animation-timing-function: var(--animation-timing-funtion);
 }
 
 .animateBackgroundOut{
   animation-name: closeDex;
   animation-fill-mode: forwards;
-  animation-duration: 2s;
-  animation-delay: 1s;
+  animation-duration: var(--animation-durtion-time);
+  animation-delay: var(--animation-out-wait-time);
+  animation-timing-function: var(--animation-timing-funtion);
 }
 
 .pokedex-background>div{
