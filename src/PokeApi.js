@@ -54,6 +54,10 @@ export class PokemonPager{
 
     async fetchPrev(){
         if (this.prev !== null) {
+            if (this.prev.searchParams.get("offset")>995) {
+                this.prev.searchParams.set("offset",992)
+                this.prev.searchParams.set("limit",16)
+            }
             let response = await fetch(this.prev);
             let responseJson = await response.json();
             this.current = new URL(this.prev);
