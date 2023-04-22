@@ -7,7 +7,7 @@ import { RouterProvider, createHashRouter, useOutletContext} from 'react-router-
 import ErrorPage from './errorPage';
 import { PokePreview } from './pokePreview';
 import { PokeList } from './pokeList';
-import { PokeInfoPage, infoPageLoader, FuncPokeInfoPage, PokeInfoPageWithRouter } from './pokeInfoPage';
+import { infoPageLoader, PokeInfoPageWithRouter } from './pokeInfoPage';
 
 function FontPage(){
   const previewRef = useRef(null);
