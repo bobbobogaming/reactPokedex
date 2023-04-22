@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[695],{695:function(p,c,e){p.exports=e.p+"static/media/water.87034977635c8c02c180.svg"}}]);

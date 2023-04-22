@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[756],{756:function(e,p,s){e.exports=s.p+"static/media/psychic.67439878eaa68ee726de.svg"}}]);

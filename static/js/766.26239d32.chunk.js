@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[766],{766:function(p,e,s){p.exports=s.p+"static/media/fighting.4eacd1b648f34d7480b9.svg"}}]);

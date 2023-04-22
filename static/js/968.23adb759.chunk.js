@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[968],{930:function(e,p,a){e.exports=a.p+"static/media/fairy.483b9ec93b8ba31e85c4.svg"}}]);

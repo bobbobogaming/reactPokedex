@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[313],{313:function(p,s,a){p.exports=a.p+"static/media/ghost.7068a3a4d1e49127bb5d.svg"}}]);

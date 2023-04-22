@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[892],{458:function(c,e,p){c.exports=p.p+"static/media/electric.bc35c5a3faf04b605c00.svg"}}]);

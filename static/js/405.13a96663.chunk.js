@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[405],{405:function(p,s,a){p.exports=a.p+"static/media/poison.12f70b0b5cfad4af1fd4.svg"}}]);

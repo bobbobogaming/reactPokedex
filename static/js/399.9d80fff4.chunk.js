@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[399],{399:function(a,p,e){a.exports=e.p+"static/media/dragon.9d32757b191cbbaea8d4.svg"}}]);
