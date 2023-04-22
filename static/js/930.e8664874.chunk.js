@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[930],{22:function(p,e,s){p.exports=s.p+"static/media/flying.d17785038a59f3ce2121.svg"}}]);

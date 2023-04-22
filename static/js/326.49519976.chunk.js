@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[326],{326:function(e,p,s){e.exports=s.p+"static/media/steel.cb91a92a3b5197e2cf61.svg"}}]);
