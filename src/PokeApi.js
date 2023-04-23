@@ -44,6 +44,7 @@ export class PokemonPager{
     
     async fetchNext(){
         if (this.next !== null){
+            this.next.searchParams.set("limit",this.POKEMONS_PER_PAGE);
             let response = await fetch(this.next);
             let responseJson = await response.json();
             this.current = new URL(this.next);
@@ -54,6 +55,7 @@ export class PokemonPager{
 
     async fetchPrev(){
         if (this.prev !== null) {
+            this.prev.searchParams.set("limit",this.POKEMONS_PER_PAGE);
             let response = await fetch(this.prev);
             let responseJson = await response.json();
             this.current = new URL(this.prev);
