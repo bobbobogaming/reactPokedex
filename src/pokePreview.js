@@ -115,7 +115,6 @@ export class PokePreview extends Component {
           <Typecard pokemonType={this.state.selectedItem.types[0]}></Typecard>
           <Typecard pokemonType={this.state.selectedItem.types[1]}></Typecard>
         </div>
-        {/*<NavLink to={`/pokemonName`} className={`btn ${ButtonStyle.danger}`}>More info</NavLink>*/}
         {this.state.newPage && <Navigate to={`/pokemon/${this.state.selectedItem.name.toLocaleLowerCase()}`} replace={true}/>}
         <ReactButton className="moreInfoButton" style={{display: this.state.selectedItem.name?"":"none"}} buttonStyle={ButtonStyle.danger} onClick={()=>this.handlePageChange()}>More info</ReactButton>
       </ReactCard>

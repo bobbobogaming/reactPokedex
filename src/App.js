@@ -3,9 +3,6 @@ import './style/App.css';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-// code snippet make first letter of a string uppercase:
-// text.replace(/^[a-zA-Z]/g,text.charAt(0).toUpperCase())
-
 function App(props) {
   const [shouldAnimateIn,setAnimationDirectionToIn] = useState(true);
   const switchAnimationDirection = () => {
