@@ -21,14 +21,6 @@ export class PokeList extends Component{
                 </ReactCard>
             )
         })
-        /*for (let i = 0; i < 16; i++) {
-            array.push(
-                <ReactCard key={i} className={"pokemonListItem"} onClick={() => {}}>
-                    <p>#{i+1}</p>
-                    <h4>Bulbasaur</h4>
-                </ReactCard>
-            );
-        }*/
     }
 
     handleNewPage = (data) => {
@@ -47,6 +39,8 @@ export class PokeList extends Component{
     }
 
     handlePageNoChange = async (pageNo) => {
+        if (pageNo > this.state.maxPageNo) pageNo = this.state.maxPageNo;
+        if (pageNo < 1) pageNo = 1;
         let pageData = await this.pager.fetchPage(pageNo);
         this.pageNo.current.value = pageData.pageNo
         this.setState({
@@ -73,9 +67,9 @@ export class PokeList extends Component{
                     {this.state.pokemonListItems}
                 </div>
                 <div className="listNavigation">
-                    <ReactButton buttonStyle={ButtonStyle.danger} disabled={this.state.buttonsAreDisabled} onClick={()=>{this.setState({buttonsAreDisabled:true});this.pager.fetchPrev().then(p=>this.handleNewPage(p)).finally(()=>this.setState({buttonsAreDisabled:false}))}}>Previous</ReactButton>
+                    <ReactButton buttonStyle={ButtonStyle.danger} disabled={this.state.buttonsAreDisabled||(this.pageNo.current?this.pageNo.current.value<=1:false)} onClick={()=>{this.setState({buttonsAreDisabled:true});this.pager.fetchPrev().then(p=>this.handleNewPage(p)).finally(()=>this.setState({buttonsAreDisabled:false}))}}>Previous</ReactButton>
                     <p>Page <input ref={this.pageNo} onBlur={(event)=>this.handlePageNoChange(event.target.value)} onKeyDown={(event)=>{if (event.key==="Enter") this.handlePageNoChange(event.target.value)}}  type="number" min="1" max="100" style={{width: 60+"px"}} />/{this.state.maxPageNo}</p>
-                    <ReactButton buttonStyle={ButtonStyle.danger} disabled={this.state.buttonsAreDisabled} onClick={()=>{this.setState({buttonsAreDisabled:true});this.pager.fetchNext().then(p=>this.handleNewPage(p)).finally(()=>this.setState({buttonsAreDisabled:false}))}}>Next</ReactButton>
+                    <ReactButton buttonStyle={ButtonStyle.danger} disabled={this.state.buttonsAreDisabled||(this.pageNo.current?this.pageNo.current.value>=this.state.maxPageNo:false)} onClick={()=>{this.setState({buttonsAreDisabled:true});this.pager.fetchNext().then(p=>this.handleNewPage(p)).finally(()=>this.setState({buttonsAreDisabled:false}))}}>Next</ReactButton>
                 </div>
             </ReactCard>
         )

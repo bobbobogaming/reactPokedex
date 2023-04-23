@@ -6,7 +6,12 @@ import { getPokemon } from './PokeApi';
 import { useLocation, useNavigate, useParams, Navigate, useLoaderData, useOutletContext } from 'react-router-dom';
 
 export async function infoPageLoader({params}){
-  const pokemon = await getPokemon(params.pokemonName);
+  let pokemon = {}
+  try {
+    pokemon = await getPokemon(params.pokemonName);
+  } catch (error) {
+    console.log(error)
+  }
   return {pokemon};
 }
 function withRouter(Component){
@@ -156,7 +161,6 @@ class PokeInfo extends Component {
   render(){
     return (
       <ReactCard className={"leftContainer"} style={{gap: "25px"}}>
-        {/*<NavLink to={`/`} className={`btn ${ButtonStyle.danger}`}>≪ Back to Pokedex</NavLink>*/}
         {this.state.newPage && <Navigate to="/" replace={true}/>}
 
         <ReactButton buttonStyle={ButtonStyle.danger} onClick={()=> this.handlePageChange()}>≪ Back to Pokedex</ReactButton>
